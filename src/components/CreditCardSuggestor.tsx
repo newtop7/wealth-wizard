@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import Markdown from 'react-markdown';
 import { CreditCard as CardIcon, Search, Star, ArrowUpRight, CheckCircle2, Zap, Globe, ShieldCheck, ArrowRightLeft } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { getFinancialAdvice } from '../services/gemini';
@@ -120,7 +121,9 @@ export default function CreditCardSuggestor() {
             </div>
             <div>
               <h4 className="font-bold text-purple-900 mb-2">Wizard's Pick</h4>
-              <p className="text-purple-800 leading-relaxed whitespace-pre-wrap">{aiAdvice}</p>
+              <div className="prose prose-sm prose-purple text-purple-800 max-w-none">
+                <Markdown>{aiAdvice}</Markdown>
+              </div>
             </div>
           </div>
         </motion.div>
