@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'motion/react';
+import Markdown from 'react-markdown';
 import { Wallet, Search, Filter, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { getFinancialAdvice } from '../services/gemini';
@@ -126,7 +127,9 @@ export default function AccountSuggestor() {
             </div>
             <div>
               <h4 className="font-bold text-indigo-900 mb-2">Wizard's Recommendation</h4>
-              <p className="text-indigo-800 leading-relaxed whitespace-pre-wrap">{aiAdvice}</p>
+              <div className="prose prose-sm prose-indigo text-indigo-800 max-w-none">
+                <Markdown>{aiAdvice}</Markdown>
+              </div>
             </div>
           </div>
         </motion.div>
