@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import Markdown from 'react-markdown';
 import { 
   TrendingUp, 
   Calculator, 
@@ -335,7 +336,9 @@ export default function FDSuggestor() {
             </div>
             <div className="space-y-2">
               <h4 className="font-bold text-slate-900 text-sm uppercase tracking-wide">Wizard's Interactive Recommendation</h4>
-              <p className="text-slate-700 text-sm leading-relaxed whitespace-pre-wrap">{aiAdvice}</p>
+              <div className="prose prose-sm prose-emerald max-w-none prose-p:leading-relaxed text-slate-700">
+                <Markdown>{aiAdvice}</Markdown>
+              </div>
             </div>
           </div>
         </motion.div>
