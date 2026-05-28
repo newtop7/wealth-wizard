@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import Markdown from 'react-markdown';
 import { 
   CreditCard as CardIcon, 
   ArrowRightLeft, 
@@ -750,15 +751,19 @@ export default function CardComparison() {
                                 <Check size={10} strokeWidth={3} />
                               </div>
                             )}
-                            <div className="space-y-1">
+                            <div className="space-y-1 pr-6">
                               <div className="flex items-center justify-between gap-1 overflow-hidden">
                                 <span className="text-[9px] text-slate-400 font-bold uppercase block tracking-wider truncate">
                                   {card.bankName}
                                 </span>
                                 {card.network && (
-                                  <span className="text-[8px] bg-slate-100 text-slate-600 font-extrabold px-1 rounded uppercase tracking-wider scale-90 origin-right shrink-0">
-                                    {Array.isArray(card.network) ? card.network[0] : card.network}
-                                  </span>
+                                  <div className="flex gap-1 flex-wrap justify-end">
+                                    {(Array.isArray(card.network) ? card.network : [card.network]).map((net: string, idx: number) => (
+                                      <span key={idx} className="text-[8px] bg-slate-100 text-slate-600 font-extrabold px-1 rounded uppercase tracking-wider shrink-0">
+                                        {net}
+                                      </span>
+                                    ))}
+                                  </div>
                                 )}
                               </div>
                               <h4 className="font-extrabold text-slate-800 text-xs truncate max-w-[90%] font-sans">
@@ -1009,8 +1014,8 @@ export default function CardComparison() {
                         className="bg-indigo-950 text-indigo-50 p-4 rounded-2xl text-[11px] font-sans leading-relaxed border border-indigo-850 max-h-56 overflow-y-auto space-y-2 shadow-inner"
                       >
                         <strong className="text-yellow-400 block pb-1 font-bold">🧙‍♂️ Wealth Wizard Strategy:</strong>
-                        <div className="prose prose-invert text-[11px] leading-relaxed block whitespace-pre-line text-indigo-200 font-medium">
-                          {aiResult}
+                        <div className="prose prose-invert prose-sm text-indigo-200 font-medium">
+                          <Markdown>{aiResult}</Markdown>
                         </div>
                       </motion.div>
                     )}
